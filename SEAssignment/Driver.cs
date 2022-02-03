@@ -7,6 +7,10 @@ namespace SEAssignment
     class Driver
     {
         public int amount { get; set; }
+        public Bank bank { get; set; }
+        public Vehicle vehicle { get; set; }
 
+        //Implementation
+        public void TransferToBank(int amount) { }
     }
 }
