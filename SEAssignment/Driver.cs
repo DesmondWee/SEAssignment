@@ -12,5 +12,6 @@ namespace SEAssignment
 
         //Implementation
         public void TransferToBank(int amount) { }
+
     }
 }
