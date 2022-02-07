@@ -25,6 +25,20 @@ namespace SEAssignment
             set { model = Model; }
         }
 
+        
+        private List<DateTime> bookedDateList = new List<DateTime>();
+        public List<DateTime> BookedDateList
+        {
+            get { return bookedDateList; }
+            set { bookedDateList = BookedDateList; }
+        }
         public Vehicle() { }
+        public Vehicle(string lplate, string br, string mod) 
+        {
+            LicensePlate = lplate;
+            Brand = br;
+            Model = mod;
+        }
+
     }
 }
