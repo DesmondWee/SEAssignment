@@ -4,6 +4,7 @@ using System.Text;
 
 namespace SEAssignment
 {
+
     class Vehicle
     {
         private string licensePlate;
@@ -39,6 +40,9 @@ namespace SEAssignment
             Brand = br;
             Model = mod;
         }
+
+
+    
 
     }
 }
