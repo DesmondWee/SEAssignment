@@ -6,6 +6,8 @@ namespace SEAssignment
     {
         static void Main(string[] args)
         {
+            List<Vehicle> vList = new List<Vehicle>();
+
             Console.WriteLine("PickUpNow Menu");
             Console.WriteLine("1. Register");
 
@@ -24,11 +26,13 @@ namespace SEAssignment
                 if (option2 == "1")
                 {
                     RegisterDriver();
+                    return;
                 }
 
                 else if (option2 == "2")
                 {
                     RegisterCustomer();
+                    return;
                 }
                 else
                 {
@@ -37,45 +41,70 @@ namespace SEAssignment
             }
         }
 
+        // Customer Registration
         public static void RegisterCustomer()
         {
             Console.WriteLine("Enter Customer Name: ");
             string name = Console.ReadLine();
 
             Console.WriteLine("Enter Customer Contact Number: ");
-            string contactNumber = Console.ReadLine();
+            int contactNumber = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Enter Customer Email Address: ");
-            string EmailAddress = Console.ReadLine();
+            string emailAddress = Console.ReadLine();
         }
 
-        public static void RegisterDriver()
+        // Driver Registration
+        public static void RegisterDriver(List<Vehicle> vList)
         {
             Console.WriteLine("Enter Driver Name: ");
             string name = Console.ReadLine();
 
             Console.WriteLine("Enter Driver Contact Number: ");
-            string contactNumber = Console.ReadLine();
+            int contactNumber = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Enter Driver Email Address: ");
-            string EmailAddress = Console.ReadLine();
+            string emailAddress = Console.ReadLine();
 
             Console.WriteLine("Enter Bank Account: ");
-            string bankAccount = Console.ReadLine();
+            int accountNumber = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Enter Bank Name: ");
             string bankName = Console.ReadLine();
 
             Console.WriteLine("Enter Vehicle Licence Plate Number: ");
-            string LicencePlateNumber = Console.ReadLine();
+            string licencePlateNumber = Console.ReadLine();
 
             Console.WriteLine("Enter Vehicle Brand: ");
             string brand = Console.ReadLine();
 
             Console.WriteLine("Enter Vehicle Model: ");
             string model = Console.ReadLine();
+
+            Vehicle newVehicle;
+            if (model == "Car")
+            {
+                newVehicle = new Car();
+                vList.Add(newVehicle);
+            }
+            else if(model == "Van")
+            {
+                newVehicle = new Van();
+                vList.Add(newVehicle);
+            }
+            else if(model == "Bus")
+            {
+                newVehicle = new Bus();
+                vList.Add(newVehicle);
+            }
+            else
+            {
+                Console.WriteLine("Driver registration unsuccessful.");
+            }
+            
         }
 
+        // Driver Wtihdraw Amount from PickUpNow
         public static void WithdrawAmount()
         {
             int Amount = 1000;

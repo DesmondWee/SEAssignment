@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SEAssignment
 {
-    class Driver
+    class Driver : User
     {
         public int amount { get; set; }
         public Bank bank { get; set; }
@@ -13,5 +13,9 @@ namespace SEAssignment
         //Implementation
         public void TransferToBank(int amount) { }
 
+        public Driver(string name, int contactNumber, string emailAddress, int identificationNumber) : base(name, contactNumber, emailAddress, identificationNumber)
+        {
+
+        }
     }
 }

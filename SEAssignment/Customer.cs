@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SEAssignment
 {
-    class Customer
+    class Customer : User
     {
     }
 }
