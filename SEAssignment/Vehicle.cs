@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SEAssignment
 {
-    class Vehicle
-    {
+    public class Vehicle
+    { 
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SEAssignment
 {
-    class Driver
+    public class Driver
     {
         public int amount { get; set; }
         public Bank bank { get; set; }
