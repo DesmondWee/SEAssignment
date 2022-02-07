@@ -34,27 +34,32 @@ namespace SEAssignment
         //Implementation
         public void GenerateReceipt() { }
 
-        public static void MakeBooking() 
+        public static void MakeBooking(Customer c) 
         {
             //date
             Console.Write("Enter Ride date (DD/MM/YYYY): ");
             string datestr = Console.ReadLine();
             DateTime date = Convert.ToDateTime(datestr);
             //locations
-            List<String> pickupdestList = EnterPickupLocation();
+            List<int> pickupdestList = EnterPickupLocation();
+            
             //select vehicle goes here
             Vehicle vehicle= SelectVehicle(date);
+            vehicle.BookedDateList.Add(date);
+            Booking newBooking = new Booking( c,  date, pickupdestList[0], pickupdestList[1], vehicle);
+            Console.WriteLine("Booking successful!");
+            Console.ReadKey();
             
         }
-        public static List<string> EnterPickupLocation() 
+        public static List<int> EnterPickupLocation() 
         {
-            List<string> locationList = new List<string>();
+            List<int> locationList = new List<int>();
             Console.Write("Enter Pickup Location: ");
             string pickup = Console.ReadLine();
-            locationList.Add(pickup);
+            locationList.Add(Convert.ToInt32(pickup));
             Console.Write("Enter Destination: ");
             string destination = Console.ReadLine();
-            locationList.Add(destination);
+            locationList.Add(Convert.ToInt32(destination));
 
             return (locationList);
         }
@@ -104,7 +109,7 @@ namespace SEAssignment
                         Console.Write("Enter the number of the car you would like to select: ");
                         string selectvehiclenumber= Console.ReadLine();
                         int selected = Convert.ToInt32(selectvehiclenumber) - 1;
-                        if (availableCarsList[selected] != null) 
+                        if (selected <= availableCarsList.Count ) 
                         {
                             
                             selectvalidVehicle = true;
@@ -149,7 +154,7 @@ namespace SEAssignment
                         Console.Write("Enter the number of the bus you would like to select: ");
                         string selectvehiclenumber = Console.ReadLine();
                         int selected = Convert.ToInt32(selectvehiclenumber) - 1;
-                        if (availablebusList[selected] != null)
+                        if (selected <= availablebusList.Count)
                         {
 
                             selectvalidVehicle = true;
@@ -199,7 +204,7 @@ namespace SEAssignment
                         Console.Write("Enter the number of the van you would like to select: ");
                         string selectvehiclenumber = Console.ReadLine();
                         int selected = Convert.ToInt32(selectvehiclenumber) - 1;
-                        if (availablevanlist[selected] != null)
+                        if (selected <= availablevanlist.Count)
                         {
 
                             selectvalidVehicle = true;

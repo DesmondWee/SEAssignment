@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SEAssignment
 {
-    class Bus:Vehicle
+    public class Bus:Vehicle
     {
         public static List<Bus> buslist = new List<Bus>();
         public float DepositAmount { get; set; } = 25;

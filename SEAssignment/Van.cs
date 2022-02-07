@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SEAssignment
 {
-    class Van:Vehicle
+    public class Van:Vehicle
     {
         public static List<Van> vanlist = new List<Van>();
 

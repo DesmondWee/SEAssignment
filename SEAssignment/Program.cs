@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SEAssignment
 {
@@ -6,38 +7,59 @@ namespace SEAssignment
     {
         static void Main(string[] args)
         {
-            List<Vehicle> vList = new List<Vehicle>();
+            Customer tempCustomer = new Customer();
+            Car tempCar = new Car("ABC", "brand", "model");
+            Car.carlist.Add(tempCar);
+            bool exit = false;
 
-            Console.WriteLine("PickUpNow Menu");
-            Console.WriteLine("1. Register");
-
-            Console.WriteLine("Enter option: ");
-            string option1 = Console.ReadLine();
-
-            if (option1 == "1")
+            while (exit == false)
             {
-                Console.WriteLine("Register");
-                Console.WriteLine("1. Register as Driver");
-                Console.WriteLine("2. Register as Csutomer");
+                Console.WriteLine("PickUpNow Menu");
+                Console.WriteLine("0. Exit");
+                Console.WriteLine("1. Register");
+                Console.WriteLine("2. MakeBooking");
+
+                
 
                 Console.WriteLine("Enter option: ");
-                string option2 = Console.ReadLine();
+                string option1 = Console.ReadLine();
+                if (option1 == "0") 
+                {
+                    exit = true;
+                    Console.WriteLine("Press Any Key To Exit.");
+                    Console.ReadKey();
+                       
+                }
+                else if (option1 == "1")
+                {
+                    Console.WriteLine("Register");
+                    Console.WriteLine("1. Register as Driver");
+                    Console.WriteLine("2. Register as Csutomer");
 
-                if (option2 == "1")
-                {
-                    RegisterDriver();
-                    return;
-                }
+                    Console.WriteLine("Enter option: ");
+                    string option2 = Console.ReadLine();
 
-                else if (option2 == "2")
-                {
-                    RegisterCustomer();
-                    return;
+                    if (option2 == "1")
+                    {
+                        RegisterDriver();
+                        return;
+                    }
+
+                    else if (option2 == "2")
+                    {
+                        RegisterCustomer();
+                        return;
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
-                else
+                else if (option1 == "2")
                 {
-                    return;
+                    Booking.MakeBooking(tempCustomer);
                 }
+                
             }
         }
 
@@ -55,7 +77,7 @@ namespace SEAssignment
         }
 
         // Driver Registration
-        public static void RegisterDriver(List<Vehicle> vList)
+        public static void RegisterDriver()
         {
             Console.WriteLine("Enter Driver Name: ");
             string name = Console.ReadLine();
@@ -81,27 +103,30 @@ namespace SEAssignment
             Console.WriteLine("Enter Vehicle Model: ");
             string model = Console.ReadLine();
 
-            Vehicle newVehicle;
+            
             if (model == "Car")
             {
-                newVehicle = new Car();
-                vList.Add(newVehicle);
+                Car newVehicle = new Car(licencePlateNumber, brand, model);
+                Car.carlist.Add(newVehicle);
+                Driver newDriver = new Driver(name, contactNumber, emailAddress, newVehicle);
             }
             else if(model == "Van")
             {
-                newVehicle = new Van();
-                vList.Add(newVehicle);
+                Van newVehicle = new Van(licencePlateNumber, brand, model);
+                Van.vanlist.Add(newVehicle);
+                Driver newDriver = new Driver(name, contactNumber, emailAddress, newVehicle);
             }
             else if(model == "Bus")
             {
-                newVehicle = new Bus();
-                vList.Add(newVehicle);
+                Bus newVehicle = new Bus(licencePlateNumber, brand, model);
+                Bus.buslist.Add(newVehicle);
+                Driver newDriver = new Driver(name, contactNumber, emailAddress, newVehicle);
             }
             else
             {
                 Console.WriteLine("Driver registration unsuccessful.");
             }
-            
+           
         }
 
         // Driver Wtihdraw Amount from PickUpNow

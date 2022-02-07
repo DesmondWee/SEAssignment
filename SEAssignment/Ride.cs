@@ -37,9 +37,9 @@ namespace SEAssignment
 
         public RideState rideState { get; set; }
 
-        public Driver driver { get; set; }
+        public Driver Driver { get; set; }
 
-        public Customer customer { get; set; }
+        public Customer Customer { get; set; }
 
         public void startride(int? rideid)
         {
