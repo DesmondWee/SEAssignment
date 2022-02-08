@@ -9,6 +9,7 @@ namespace SEAssignment
         {
             Customer tempCustomer = new Customer();
             Car tempCar = new Car("ABC", "brand", "model");
+            Ride ride = new Ride();
             Car.carlist.Add(tempCar);
             bool exit = false;
 
@@ -18,17 +19,17 @@ namespace SEAssignment
                 Console.WriteLine("0. Exit");
                 Console.WriteLine("1. Register");
                 Console.WriteLine("2. MakeBooking");
-
+                Console.WriteLine("3. Start Ride");
                 
 
                 Console.WriteLine("Enter option: ");
                 string option1 = Console.ReadLine();
-                if (option1 == "0") 
+                if (option1 == "0")
                 {
                     exit = true;
                     Console.WriteLine("Press Any Key To Exit.");
                     Console.ReadKey();
-                       
+
                 }
                 else if (option1 == "1")
                 {
@@ -58,6 +59,10 @@ namespace SEAssignment
                 else if (option1 == "2")
                 {
                     Booking.MakeBooking(tempCustomer);
+                }
+                else if (option1 == "3")
+                {
+                    Driverride(ride);
                 }
                 
             }
@@ -162,8 +167,16 @@ namespace SEAssignment
                     Driver driver = new Driver();
                     Console.WriteLine("Receipt sent to Customer's email");
                     ride.makepayment(ride.rideid);
+                    RateRide(ride);
                 }
             }
+        }
+        static void RateRide(Ride ride)
+        {
+            Console.Write("Give ride a rating out of 5: ");
+            string rating = Console.ReadLine();
+            ride.rate(ride.rideid);
+            Console.ReadKey();
         }
     }
 }
