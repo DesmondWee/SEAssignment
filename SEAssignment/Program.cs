@@ -20,6 +20,7 @@ namespace SEAssignment
                 Console.WriteLine("1. Register");
                 Console.WriteLine("2. MakeBooking");
                 Console.WriteLine("3. Start Ride");
+                Console.WriteLine("4. Withdraw (Driver)");
                 
 
                 Console.WriteLine("Enter option: ");
@@ -63,6 +64,14 @@ namespace SEAssignment
                 else if (option1 == "3")
                 {
                     Driverride(ride);
+                }
+                else if (option1 == "4")
+                {
+                    WithdrawAmount();
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input");
                 }
                 
             }
