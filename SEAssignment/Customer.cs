@@ -6,12 +6,17 @@ namespace SEAssignment
 {
     public class Customer : User
     {
-        public Customer()
+        public int points { get; set; }
+
+        public interface RedeemPoints
         {
+            void Redeem(int points);
         }
+        public Customer() { }
 
         public Customer(string _name, int _contactNumber, string _emailAddress) : base(_name, _contactNumber, _emailAddress)
         {
+
         }
     }
 }
