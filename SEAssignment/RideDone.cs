@@ -41,7 +41,8 @@ namespace SEAssignment
             }
             else
             {
-                ride.setState(new PaymentDone(ride));
+                Console.WriteLine("Payment made");
+                ride.setState(ride.getpaymentdone());
             }
         }
         public void rate(int? rideid)

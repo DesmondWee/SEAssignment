@@ -24,11 +24,12 @@ namespace SEAssignment
 
             state = driverarrived;
         }
-
-        public void setState(RideState state)
-        {
-            this.state = state;
-        }
+        public RideState getstartride() { return ridestarted; }
+        public RideState getridedone() { return ridedone; }
+        public RideState getdriverarrived() { return driverarrived; }
+        public RideState getpaymentdone() { return paymentdone; }
+        public RideState getrated() { return rated; }
+        public void setState(RideState rs) { state = rs; }
         public int rideid { get; set; }
 
         public DateTime starttime { get; set; }
@@ -43,79 +44,13 @@ namespace SEAssignment
 
         public void startride(int? rideid)
         {
-            if (rideid == null)
-            {
-                Console.WriteLine("No ride available");
-            }
-            else
-            {
-                if (state == driverarrived)
-                {
-                    state = ridestarted;
-                    Console.WriteLine("Ride started");
-                }
-                else
-                {
-                    Console.WriteLine("Driver hasn't arrived");
-                }
-            }
+            state.startride(rideid);
         }
         public void stopride(int? rideid)
-        {
-            if(rideid == null)
-            {
-                Console.WriteLine("No ride available");
-            }
-            else
-            {
-                if (state == ridestarted)
-                {
-                    state = ridedone;
-                    Console.WriteLine("Ride ended");
-                }
-                else
-                {
-                    Console.WriteLine("Ride not started yet");
-                }
-            }
-        }
+        { state.stopride(rideid); }
         public void makepayment(int? rideid)
-        {
-            if (rideid == null)
-            {
-                Console.WriteLine("No ride available");
-            }
-            else
-            {
-                if (state == ridedone)
-                {
-                    state = paymentdone;
-                    Console.WriteLine("Payment made");
-                }
-                else
-                {
-                    Console.WriteLine("Ride not finished.");
-                }
-            }
-        }
+        { state.makepayment(rideid); }
         public void rate(int? rideid)
-        {
-            if (rideid == null)
-            {
-                Console.WriteLine("No ride available");
-            }
-            else
-            {
-                if (state == paymentdone)
-                {
-                    state = rated;
-                    Console.WriteLine("Received rating");
-                }
-                else
-                {
-                    Console.WriteLine("Payment not yet made.");
-                }
-            }
-        }
+        { state.rate(rideid); }
     }
 }

@@ -19,7 +19,8 @@ namespace SEAssignment
             }
             else
             {
-                ride.setState(new RideStarted(ride));
+                Console.WriteLine("Ride Started");
+                ride.setState(ride.getstartride());
             }
         }
         public void stopride(int? rideid)

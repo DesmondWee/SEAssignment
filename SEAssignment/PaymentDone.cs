@@ -52,7 +52,8 @@ namespace SEAssignment
             }
             else
             {
-                ride.setState(new Rated(ride));
+                Console.WriteLine("Ride Rated");
+                ride.setState(ride.getrated());
             }
         }
     }

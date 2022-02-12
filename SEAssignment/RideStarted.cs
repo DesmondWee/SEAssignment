@@ -30,7 +30,8 @@ namespace SEAssignment
             }
             else
             {
-                ride.setState(new RideDone(ride));
+                Console.WriteLine("Ride completed");
+                ride.setState(ride.getridedone());
             }
         }
         public void makepayment(int? rideid)
