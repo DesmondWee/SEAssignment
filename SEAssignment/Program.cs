@@ -5,14 +5,16 @@ namespace SEAssignment
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             Customer tempCustomer = new Customer();
             Car tempCar = new Car("ABC", "brand", "model");
-            Ride ride = new Ride();
+            List<Ride> ridelist = new List<Ride>();
             Car.carlist.Add(tempCar);
             bool exit = false;
-
+            List<string> bookinglist = new List<string>();
+            bookinglist.Add("");
             while (exit == false)
             {
                 Console.WriteLine("PickUpNow Menu");
@@ -21,7 +23,8 @@ namespace SEAssignment
                 Console.WriteLine("2. MakeBooking");
                 Console.WriteLine("3. Start Ride");
                 Console.WriteLine("4. Withdraw (Driver)");
-                
+                Console.WriteLine("5. Make payment (Customer)");
+
 
                 Console.WriteLine("Enter option: ");
                 string option1 = Console.ReadLine();
@@ -59,20 +62,31 @@ namespace SEAssignment
                 }
                 else if (option1 == "2")
                 {
+                    
                     Booking.MakeBooking(tempCustomer);
+                    
+                    bookinglist[0]=("Booked");
+                    
                 }
                 else if (option1 == "3")
                 {
-                    Driverride(ride);
+                    Ride newride = Driverride(bookinglist);
+                    ridelist.Add(newride);
+
                 }
                 else if (option1 == "4")
                 {
                     WithdrawAmount();
                 }
+                else if (option1 == "5")
+                {
+                    CustomerPayment(ridelist);
+                }
                 else
                 {
                     Console.WriteLine("Invalid input");
                 }
+
                 
             }
         }
@@ -162,31 +176,66 @@ namespace SEAssignment
             }
         }
 
-        static void Driverride(Ride ride)
+        static Ride Driverride(List<string> bookinglist)
         {
-            Console.Write("Start ride [Y/N]: ");
-            string choice = Console.ReadLine();
-            if (choice == "Y")
+            if (bookinglist[0] == "")
             {
-                ride.startride(ride.rideid);
-                Console.Write("Finish ride [Y/N]: ");
-                string finchoice = Console.ReadLine();
-                if (finchoice == "Y")
-                {
-                    ride.stopride(ride.rideid);
-                    Driver driver = new Driver();
-                    Console.WriteLine("Receipt sent to Customer's email");
-                    ride.makepayment(ride.rideid);
-                    RateRide(ride);
-                }
+                Console.WriteLine("No booking made");
             }
+            else if (bookinglist[0] == "Booked")
+            {
+                Ride ride = new Ride();
+                Console.Write("Start ride [Y/N]: ");
+                string choice = Console.ReadLine();
+
+                if (choice == "Y")
+                {
+                    ride.startride(ride.rideid);
+                    Console.Write("Finish ride [Y/N]: ");
+                    string finchoice = Console.ReadLine();
+                    if (finchoice == "Y")
+                    {
+                        ride.stopride(ride.rideid);
+                        Console.WriteLine("");
+                        return ride;
+                    }
+                }
+                else
+                {
+
+                }
+
+            }
+            return null;
         }
         static void RateRide(Ride ride)
         {
-            Console.Write("Give ride a rating out of 5: ");
-            string rating = Console.ReadLine();
-            ride.rate(ride.rideid);
-            Console.ReadKey();
+            Console.Write("Do you want to give a rating? ");
+            string choice = Console.ReadLine();
+            if (choice == "Y")
+            {
+                Console.Write("Give ride a rating out of 5: ");
+                string rating = Console.ReadLine();
+                ride.rate(ride.rideid);
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("No rating will be given");
+            }
+        }
+        static void CustomerPayment(List<Ride> ridelist)
+        {
+            Console.Write("Do you wish to make payment for ride? ");
+            string input = Console.ReadLine();
+            if(input == "Y")
+            {
+                Ride newride = ridelist[0];
+                newride.makepayment(newride.rideid);
+                Console.WriteLine("Payment made to driver");
+                Console.WriteLine("Recepit sent to customer email");
+                RateRide(newride);
+            }
         }
     }
 }
