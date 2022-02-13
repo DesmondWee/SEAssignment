@@ -9,7 +9,7 @@ namespace SEAssignment
         static void Main(string[] args)
         {
             Customer tempCustomer = new Customer();
-            Car tempCar = new Car("ABC", "brand", "model");
+            Car tempCar = new Car("ABCPlace", "Speedster", "SuperSpeeder");
             List<Ride> ridelist = new List<Ride>();
             Car.carlist.Add(tempCar);
             bool exit = false;
